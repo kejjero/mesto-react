@@ -36,10 +36,17 @@ function Main () {
                     className="profile__add-button"
                     type="button"
                 />
-            </section>
-            {isOpen && <PopupWithForm
-                name={'edit-profile'}
-            />}
+                </section>
+            {isOpen && <PopupWithForm>
+                <form className={}>
+                    {props.children}
+
+                </form>
+            </PopupWithForm>}
+
+
+
+
         </main>
     )
 }
