@@ -1,12 +1,7 @@
 import React from "react";
-import PopupWithForm from "./PopupWithForm";
+// import ImagePopup from "./ImagePopup";
 
-function Main () {
-    const [isOpen, setIsOpen] = React.useState(false);
-
-    function handleEditProfileClick() {
-        setIsOpen(!isOpen)
-    }
+function Main (props) {
 
     return (
         <main className="content">
@@ -15,6 +10,7 @@ function Main () {
                     <button
                         type="button"
                         className="profile__avatar-button"
+                        onClick={props.openAvatar}
                     />
                     <img className="profile__avatar" alt="Аватар"
                          src="https://спортсекции18.рф/wp-content/uploads/2020/09/placeholder-man.png"
@@ -27,26 +23,17 @@ function Main () {
                         type="button"
                         className="profile__edit-button"
                         aria-label="Редактировать профиль"
-                        onClick={handleEditProfileClick}
+                        onClick={props.openEditProfile}
                         title={'Редактировать профиль'}
                         name={'edit-profile'}
                     />
                 </div>
                 <button
+                    onClick={props.openAddPlace}
                     className="profile__add-button"
                     type="button"
                 />
                 </section>
-            {isOpen && <PopupWithForm>
-                <form className={}>
-                    {props.children}
-
-                </form>
-            </PopupWithForm>}
-
-
-
-
         </main>
     )
 }
