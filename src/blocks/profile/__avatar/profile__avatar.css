@@ -5,6 +5,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	background-image: url("https://спортсекции18.рф/wp-content/uploads/2020/09/placeholder-man.png");
 	object-fit: cover;
 	grid-area: profile__avatar;
 }
