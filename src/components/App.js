@@ -2,14 +2,33 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import api from "../utils/api"
-
 import PopupWithForm from "./PopupWithForm";
+import {useEffect, useState} from "react";
+import api from "../utils/api";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [userAvatar, setUserAvatar] = useState('https://goo.su/5KqwD')
+    const [userName, setUserName] = useState('Имя')
+    const [userDescription, setUserDescription] = useState('Деятельность')
+    const [cards, setCards] = useState([])
+
+    useEffect(() => {
+        Promise.all([api.getProfile(), api.getCards()])
+            .then(([res, cards]) => {
+                setUserAvatar(res.avatar)
+                setUserName(res.name)
+                setUserDescription(res.about)
+
+                cards.reverse();
+                setCards(cards)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    })
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true)
@@ -36,6 +55,11 @@ function App() {
               openEditProfile = {handleEditProfileClick}
               openAddPlace = {handleAddPlaceClick}
               openAvatar = {handleEditAvatarClick}
+              userAvatar = {userAvatar}
+              userName = {userName}
+              userDescription = {userDescription}
+              cards={cards}
+
           />
           <Footer/>
 
@@ -59,7 +83,7 @@ function App() {
               />
               <span id="person-errors"
                     className="popup__error popup__error_visible">
-                        </span>
+              </span>
               <input
                   type="text"
                   className="popup__input popup__input_about-me"
@@ -145,7 +169,7 @@ function App() {
               />
           </PopupWithForm>}
       </>
-)
+  )
 }
 
 export default App;

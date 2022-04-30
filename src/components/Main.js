@@ -1,38 +1,9 @@
 import React from "react";
-import api from "../utils/api";
-import {useEffect, useState} from "react";
+import Card from "./Card"
 
 // import ImagePopup from "./ImagePopup";
 
-function Main ({openEditProfile, openAddPlace, openAvatar}) {
-    const [userAvatar, setUserAvatar] = useState()
-    const [userName, setUserName] = useState('Имя')
-    const [userDescription, setUserDescription] = useState('Деятельность')
-
-    function changeUserAvatar (avatar) {
-        setUserAvatar(avatar)
-    }
-
-    function changeUserName (name) {
-        setUserName(name)
-    }
-
-    function changeUserDescription (description) {
-        setUserDescription(description)
-    }
-
-    useEffect(() => {
-        Promise.all([api.getProfile(), api.getCards()])
-        .then(([res, data]) => {
-            changeUserAvatar(res.avatar)
-            changeUserName(res.name)
-            changeUserDescription(res.about)
-            // data.reverse();
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    },[])
+function Main ({openEditProfile, openAddPlace, openAvatar, userAvatar, userName, userDescription, cards}) {
 
     return (
         <main className="content">
@@ -66,7 +37,20 @@ function Main ({openEditProfile, openAddPlace, openAvatar}) {
                     className="profile__add-button"
                     type="button"
                 />
-                </section>
+            </section>
+            <section className="elements">
+                {/*{cards.forEach((card) => {*/}
+                {/*    */}
+                {/*    return(*/}
+                {/*        <Card*/}
+                {/*        title={card.name}*/}
+                {/*        link={card.link}*/}
+                {/*    />*/}
+                {/*    )*/}
+                {/*})*/}
+
+                {/*}*/}
+            </section>
         </main>
     )
 }
