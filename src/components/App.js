@@ -13,7 +13,7 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
     const [isDeleteCard, setIsDeleteCard] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState(null)
+    const [selectedCard, setSelectedCard] = React.useState(false)
 
     const [userAvatar, setUserAvatar] = useState('https://goo.su/5KqwD')
     const [userName, setUserName] = useState('Имя')
@@ -57,7 +57,7 @@ function App() {
         setIsAddPlacePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
         setIsDeleteCard(false)
-        setSelectedCard(null)
+        setSelectedCard(false)
     }
 
     function handleCardClick (selectedCard) {

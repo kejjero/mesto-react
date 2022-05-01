@@ -3,7 +3,7 @@ import React from "react";
 function Card ({openDeleteCard, title, link, likes, handleCardClick}) {
 
     function handleClick() {
-        handleCardClick({name: title, src: link})
+        handleCardClick({name: title, image: link})
     }
 
     return (
