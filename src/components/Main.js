@@ -3,8 +3,17 @@ import Card from "./Card"
 
 // import ImagePopup from "./ImagePopup";
 
-function Main ({openEditProfile, openAddPlace, openAvatar, userAvatar, userName, userDescription, cards}) {
-
+function Main ({
+                   openEditProfile,
+                   openAddPlace,
+                   openAvatar,
+                   openDeleteCard,
+                   userAvatar,
+                   userName,
+                   userDescription,
+                   cards,
+                   handleCardClick,
+}) {
     return (
         <main className="content">
             <section className="profile">
@@ -39,17 +48,18 @@ function Main ({openEditProfile, openAddPlace, openAvatar, userAvatar, userName,
                 />
             </section>
             <section className="elements">
-                {/*{cards.forEach((card) => {*/}
-                {/*    */}
-                {/*    return(*/}
-                {/*        <Card*/}
-                {/*        title={card.name}*/}
-                {/*        link={card.link}*/}
-                {/*    />*/}
-                {/*    )*/}
-                {/*})*/}
-
-                {/*}*/}
+                {cards.map((card) => {
+                    return(
+                        <Card
+                        title={card.name}
+                        link={card.link}
+                        likes={card.likes}
+                        openDeleteCard={openDeleteCard}
+                        onCardClick={handleCardClick}
+                    />
+                    )
+                })
+                }
             </section>
         </main>
     )

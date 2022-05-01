@@ -1,10 +1,23 @@
 import React from "react";
 
+function handleClick(props) {
+    console.log(props)
+}
+
 function Card (props) {
     return (
-        <article className="element">
+        <article
+            className="element"
+            onClick={handleClick}
+            e={handleCardClick}
+        >
             <div className="element__contain">
-                <button className="element__trash" type="button">
+                {/* element__trash_active переделать в ПР11  */}
+                <button
+                    className="element__trash element__trash_active"
+                    type="button"
+                    onClick={props.openDeleteCard}
+                >
                 </button>
                 <img className="element__image" alt={props.title} src={props.link}/>
                 </div>
@@ -13,7 +26,7 @@ function Card (props) {
                 <div className="element__like-wrapper">
                     <button type="button" className="element__like">
                     </button>
-                    <span className="element__like-value">{'5'}</span>
+                    <span className="element__like-value">{props.likes.length}</span>
                 </div>
             </div>
         </article>

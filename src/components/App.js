@@ -5,11 +5,15 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import {useEffect, useState} from "react";
 import api from "../utils/api";
+import ImagePopup from "./ImagePopup";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [isDeleteCard, setIsDeleteCard] = React.useState(false);
+    const [selectedCard, setSelectedCard] = React.useState(null)
+
     const [userAvatar, setUserAvatar] = useState('https://goo.su/5KqwD')
     const [userName, setUserName] = useState('Имя')
     const [userDescription, setUserDescription] = useState('Деятельность')
@@ -28,6 +32,7 @@ function App() {
             .catch((err) => {
                 console.log(err)
             })
+
     })
 
     function handleEditProfileClick() {
@@ -42,11 +47,22 @@ function App() {
         setIsEditAvatarPopupOpen(true)
     }
 
+    function handleDeleteCardClick() {
+        setIsDeleteCard(true)
+    }
+
     function closeAllPopups () {
         setIsEditProfilePopupOpen(false)
         setIsAddPlacePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
+        setIsDeleteCard(false)
+        setSelectedCard(null)
     }
+
+    function handleCardClick (selectedCard) {
+        console.log(selectedCard)
+    }
+
 
   return (
       <>
@@ -55,11 +71,13 @@ function App() {
               openEditProfile = {handleEditProfileClick}
               openAddPlace = {handleAddPlaceClick}
               openAvatar = {handleEditAvatarClick}
+              openDeleteCard = {handleDeleteCardClick}
+              handleCardClick = {handleCardClick}
+
               userAvatar = {userAvatar}
               userName = {userName}
               userDescription = {userDescription}
               cards={cards}
-
           />
           <Footer/>
 
@@ -168,6 +186,19 @@ function App() {
                   value="Сохранить"
               />
           </PopupWithForm>}
+
+          {/* DELETE CARD */}
+          {isDeleteCard && <PopupWithForm
+              name={"edit-avatar"}
+              title={"Вы уверены?"}
+              isOpen={true}
+              onClose = {closeAllPopups}
+          >
+              <button type="submit" className="popup__button popup__button_card-delete" value="Да">Да</button>
+          </PopupWithForm>}
+          <ImagePopup
+
+          />
       </>
   )
 }
