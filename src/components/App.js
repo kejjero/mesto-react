@@ -11,6 +11,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+
     const [isDeleteCard, setIsDeleteCard] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState(null)
 
@@ -60,7 +61,7 @@ function App() {
     }
 
     function handleCardClick (selectedCard) {
-        console.log(selectedCard)
+        setSelectedCard(selectedCard)
     }
 
 
@@ -80,6 +81,9 @@ function App() {
               cards={cards}
           />
           <Footer/>
+
+          {/* IMAGE POPUP */}
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
           {/* EDIT PROFILE */}
           {isEditProfilePopupOpen && <PopupWithForm
@@ -196,9 +200,6 @@ function App() {
           >
               <button type="submit" className="popup__button popup__button_card-delete" value="Да">Да</button>
           </PopupWithForm>}
-          <ImagePopup
-
-          />
       </>
   )
 }

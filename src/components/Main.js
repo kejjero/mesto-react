@@ -1,8 +1,6 @@
 import React from "react";
 import Card from "./Card"
 
-// import ImagePopup from "./ImagePopup";
-
 function Main ({
                    openEditProfile,
                    openAddPlace,
@@ -55,7 +53,7 @@ function Main ({
                         link={card.link}
                         likes={card.likes}
                         openDeleteCard={openDeleteCard}
-                        onCardClick={handleCardClick}
+                        handleCardClick={handleCardClick}
                     />
                     )
                 })
