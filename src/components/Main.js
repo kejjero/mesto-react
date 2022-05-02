@@ -49,12 +49,13 @@ function Main ({
                 {cards.map((card) => {
                     return(
                         <Card
-                        title={card.name}
-                        link={card.link}
-                        likes={card.likes}
-                        openDeleteCard={openDeleteCard}
-                        handleCardClick={handleCardClick}
-                    />
+                            key={card._id}
+                            title={card.name}
+                            link={card.link}
+                            likes={card.likes}
+                            openDeleteCard={openDeleteCard}
+                            handleCardClick={handleCardClick}
+                        />
                     )
                 })
                 }

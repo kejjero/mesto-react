@@ -9,7 +9,6 @@ function Card ({openDeleteCard, title, link, likes, handleCardClick}) {
     return (
         <article
             className="element"
-            onClick={handleClick}
         >
             <div className="element__contain">
                 <button
@@ -18,7 +17,12 @@ function Card ({openDeleteCard, title, link, likes, handleCardClick}) {
                     onClick={openDeleteCard}
                 >
                 </button>
-                <img className="element__image" alt={title} src={link}/>
+                <img
+                    className="element__image"
+                    onClick={handleClick}
+                    alt={title}
+                    src={link}
+                />
                 </div>
             <div className="element__description">
                 <h2 className="element__title">{title}</h2>

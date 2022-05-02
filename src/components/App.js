@@ -27,7 +27,6 @@ function App() {
                 setUserName(res.name)
                 setUserDescription(res.about)
 
-                cards.reverse();
                 setCards(cards)
             })
             .catch((err) => {
@@ -97,7 +96,7 @@ function App() {
                   className="popup__input popup__input_person"
                   id="person"
                   name="person"
-                  value="Имя"
+                  value={"Имя"}
                   placeholder="Имя"
                   required
                   minLength="2"
@@ -176,7 +175,7 @@ function App() {
                      className="popup__input popup__input_link-avatar"
                      name="avatar"
                      id="edit-avatar"
-                     value=""
+                     value={""}
                      placeholder="Ссылка на картинку"
                      required
               />

@@ -52,15 +52,11 @@
 @import url(./blocks/footer/__copyright/footer__copyright.css);
 
 body {
+    font-family: "Inter", "open-sans", sans-serif;
     background-color: #000;
     margin: 0 auto;
-    font-family: "Inter", "open-sans", sans-serif;
-}
-
-.App {
     position: relative;
     min-width: 320px;
     max-width: 1280px;
     color: #fff;
-    margin: 0 auto;
 }
