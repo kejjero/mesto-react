@@ -1,7 +1,6 @@
 import React from "react";
 
-function ImagePopup ({card, onClose}) {
-    console.log(card)
+function ImagePopup({card, onClose}) {
     return (
         <div
             onClick={onClose}
@@ -13,7 +12,7 @@ function ImagePopup ({card, onClose}) {
                 </button>
                 <img src={card.image} alt={card.name}
                      className="popup__image"/>
-                    <p className="popup__subtitle">{card.name}</p>
+                <p className="popup__subtitle">{card.name}</p>
             </div>
             <div className="popup__overlay">
             </div>

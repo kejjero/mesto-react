@@ -1,6 +1,3 @@
-export const editProfileButton = document.querySelector('.profile__edit-button');
-export const addPlaceButton = document.querySelector('.profile__add-button');
-export const editAvatarButton = document.querySelector('.profile__avatar-button');
 export const inputPerson = document.querySelector('.popup__input_person');
 export const inputAboutMe = document.querySelector('.popup__input_about-me');
 

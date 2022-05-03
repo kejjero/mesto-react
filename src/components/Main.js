@@ -1,17 +1,17 @@
 import React from "react";
 import Card from "./Card"
 
-function Main ({
-                   openEditProfile,
-                   openAddPlace,
-                   openAvatar,
-                   openDeleteCard,
-                   userAvatar,
-                   userName,
-                   userDescription,
-                   cards,
-                   handleCardClick,
-}) {
+function Main({
+                  openEditProfile,
+                  openAddPlace,
+                  openAvatar,
+                  openDeleteCard,
+                  userAvatar,
+                  userName,
+                  userDescription,
+                  cards,
+                  handleCardClick,
+              }) {
     return (
         <main className="content">
             <section className="profile">
@@ -23,7 +23,7 @@ function Main ({
                     />
                     <div
                         className="profile__avatar"
-                        style={{ backgroundImage: `url(${userAvatar})` }}
+                        style={{backgroundImage: `url(${userAvatar})`}}
                     >
                     </div>
                 </div>
@@ -47,7 +47,7 @@ function Main ({
             </section>
             <section className="elements">
                 {cards.map((card) => {
-                    return(
+                    return (
                         <Card
                             key={card._id}
                             title={card.name}

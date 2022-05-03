@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card ({openDeleteCard, title, link, likes, handleCardClick}) {
+function Card({openDeleteCard, title, link, likes, handleCardClick}) {
 
     function handleClick() {
         handleCardClick({name: title, image: link})
@@ -23,7 +23,7 @@ function Card ({openDeleteCard, title, link, likes, handleCardClick}) {
                     alt={title}
                     src={link}
                 />
-                </div>
+            </div>
             <div className="element__description">
                 <h2 className="element__title">{title}</h2>
                 <div className="element__like-wrapper">
