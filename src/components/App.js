@@ -12,7 +12,7 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState('')
+    const [selectedCard, setSelectedCard] = useState({})
 
     const [userAvatar, setUserAvatar] = useState('https://goo.su/5KqwD')
     const [userName, setUserName] = useState('Имя')
@@ -54,7 +54,7 @@ function App() {
         setIsAddPlacePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
         setIsDeleteCardPopupOpen(false)
-        setSelectedCard('')
+        setSelectedCard({})
     }
 
     function handleCardClick(selectedCard) {
