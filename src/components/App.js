@@ -139,7 +139,7 @@ function App() {
                 <span
                     id="name-place-errors"
                     className="popup__error popup__error_visible">
-                        </span>
+                </span>
                 <input type="url"
                        className="popup__input popup__input_link-place"
                        name="link"
