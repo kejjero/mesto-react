@@ -5,6 +5,7 @@ import PopupWithForm from "./PopupWithForm";
 import {useEffect, useState} from "react";
 import api from "../utils/api";
 import ImagePopup from "./ImagePopup";
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -13,19 +14,14 @@ function App() {
 
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({})
+    const [currentUser, setCurrentUser] = useState({})
 
-    const [userAvatar, setUserAvatar] = useState('https://goo.su/5KqwD')
-    const [userName, setUserName] = useState('Имя')
-    const [userDescription, setUserDescription] = useState('Деятельность')
     const [cards, setCards] = useState([])
 
     useEffect(() => {
-        Promise.all([api.getProfile(), api.getCards()])
+        Promise.all([api.getUserInfo(), api.getCards()])
             .then(([res, cards]) => {
-                setUserAvatar(res.avatar)
-                setUserName(res.name)
-                setUserDescription(res.about)
-
+                setCurrentUser(res)
                 setCards(cards)
             })
             .catch((err) => {
@@ -62,7 +58,7 @@ function App() {
     }
 
     return (
-        <>
+        <CurrentUserContext.Provider value={currentUser}>
             <Header/>
             <Main
                 openEditProfile={handleEditProfileClick}
@@ -70,10 +66,6 @@ function App() {
                 openAvatar={handleEditAvatarClick}
                 openDeleteCard={handleDeleteCardClick}
                 handleCardClick={handleCardClick}
-
-                userAvatar={userAvatar}
-                userName={userName}
-                userDescription={userDescription}
                 cards={cards}
             />
             <Footer/>
@@ -185,7 +177,7 @@ function App() {
                 buttonText={"Да"}
             >
             </PopupWithForm>
-        </>
+        </CurrentUserContext.Provider>
     )
 }
 
