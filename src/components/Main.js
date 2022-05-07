@@ -1,17 +1,11 @@
 import React from "react";
 import Card from "./Card"
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
+import {useContext} from "react";
 
-function Main({
-                  openEditProfile,
-                  openAddPlace,
-                  openAvatar,
-                  openDeleteCard,
-                  userAvatar,
-                  userName,
-                  userDescription,
-                  cards,
-                  handleCardClick,
-              }) {
+function Main({openEditProfile, openAddPlace, openAvatar, openDeleteCard, cards, handleCardClick,})
+{
+    const currentUser = useContext(CurrentUserContext)
     return (
         <main className="content">
             <section className="profile">
@@ -23,13 +17,13 @@ function Main({
                     />
                     <div
                         className="profile__avatar"
-                        style={{backgroundImage: `url(${userAvatar})`}}
+                        style={{backgroundImage: `url(${currentUser.avatar})`}}
                     >
                     </div>
                 </div>
                 <div className="profile__info">
-                    <h1 className="profile__person">{userName}</h1>
-                    <p className="profile__about-me">{userDescription}</p>
+                    <h1 className="profile__person">{currentUser.name}</h1>
+                    <p className="profile__about-me">{currentUser.about}</p>
                     <button
                         type="button"
                         className="profile__edit-button"
