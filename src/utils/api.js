@@ -41,7 +41,7 @@ class API {
     }
 
     // Получить профиль пользователя
-    getProfile() {
+    getUserInfo() {
         const promise = fetch(`${this._url}/users/me`, {
             method: 'GET',
             headers: this._headers,
