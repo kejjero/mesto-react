@@ -6,4 +6,4 @@ export const userContext = {
         avatar: 'https://goo.su/5KqwD',
 }
 
-export const CurrentUserContext = React.createContext(userContext);
+export const CurrentUserContext = React.createContext();
