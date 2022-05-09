@@ -3,9 +3,18 @@ import Card from "./Card"
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import {useContext} from "react";
 
-function Main({openEditProfile, openAddPlace, openAvatar, openDeleteCard, cards, handleCardClick,})
+function Main({
+                  openEditProfile,
+                  openAddPlace,
+                  openAvatar,
+                  openDeleteCard,
+                  cards,
+                  handleCardLike,
+                  handleCardClick,
+              })
 {
     const currentUser = useContext(CurrentUserContext)
+
     return (
         <main className="content">
             <section className="profile">
@@ -44,11 +53,11 @@ function Main({openEditProfile, openAddPlace, openAvatar, openDeleteCard, cards,
                     return (
                         <Card
                             key={card._id}
-                            title={card.name}
-                            link={card.link}
-                            likes={card.likes}
+                            card={card}
+                            currentUser={currentUser}
                             openDeleteCard={openDeleteCard}
                             handleCardClick={handleCardClick}
+                            onCardLike={handleCardLike}
                         />
                     )
                 })
