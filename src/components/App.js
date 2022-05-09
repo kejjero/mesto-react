@@ -5,24 +5,22 @@ import PopupWithForm from "./PopupWithForm";
 import {useEffect, useState} from "react";
 import api from "../utils/api";
 import ImagePopup from "./ImagePopup";
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import {CurrentUserContext, userContext} from '../contexts/CurrentUserContext';
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({})
-    const [currentUser, setCurrentUser] = useState({})
-
+    const [currentUser, setCurrentUser] = useState(userContext)
     const [cards, setCards] = useState([])
 
     useEffect(() => {
         Promise.all([api.getUserInfo(), api.getCards()])
-            .then(([res, cards]) => {
-                setCurrentUser(res)
-                setCards(cards)
+            .then(([userData, cardsData]) => {
+                setCurrentUser(userData)
+                setCards(cardsData)
             })
             .catch((err) => {
                 console.log(err)
@@ -57,6 +55,29 @@ function App() {
         setSelectedCard(selectedCard)
     }
 
+    function handleCardLike(card) {
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+        if (isLiked) {
+            api.deleteLike(card._id)
+                .then((res) => {
+
+                })
+                .catch((err) => {
+                    alert(err)
+                })
+        }
+        else {
+            api.addLike(card._id)
+                .then((res) => {
+
+                })
+                .catch((err) => {
+                    alert(err)
+                })
+        }
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Header/>
@@ -66,10 +87,9 @@ function App() {
                 openAvatar={handleEditAvatarClick}
                 openDeleteCard={handleDeleteCardClick}
                 handleCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
                 cards={cards}
             />
-            <Footer/>
-
             {/* IMAGE POPUP */}
             <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
@@ -177,6 +197,7 @@ function App() {
                 buttonText={"Да"}
             >
             </PopupWithForm>
+            <Footer/>
         </CurrentUserContext.Provider>
     )
 }
