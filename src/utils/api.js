@@ -1,4 +1,3 @@
-
 class API {
     constructor( { baseUrl, headers } ) {
         this._url = baseUrl;
@@ -108,7 +107,7 @@ export const api = new API({
     headers: {
         authorization:
             '6550da10-2d55-4388-86e4-3d7ab266355b',
-        'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
     }
 });
 
