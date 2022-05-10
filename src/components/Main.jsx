@@ -1,20 +1,9 @@
-import React from "react";
 import Card from "./Card"
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import {useContext} from "react";
 
-function Main({
-                  openEditProfile,
-                  openAddPlace,
-                  openAvatar,
-                  openDeleteCard,
-                  cards,
-                  handleCardLike,
-                  handleCardClick,
-              })
-{
+function Main(props) {
     const currentUser = useContext(CurrentUserContext)
-
     return (
         <main className="content">
             <section className="profile">
@@ -22,7 +11,7 @@ function Main({
                     <button
                         type="button"
                         className="profile__avatar-button"
-                        onClick={openAvatar}
+                        onClick={props.openAvatar}
                     />
                     <div
                         className="profile__avatar"
@@ -37,27 +26,28 @@ function Main({
                         type="button"
                         className="profile__edit-button"
                         aria-label="Редактировать профиль"
-                        onClick={openEditProfile}
+                        onClick={props.openEditProfile}
                         title={'Редактировать профиль'}
                         name={'edit-profile'}
                     />
                 </div>
                 <button
-                    onClick={openAddPlace}
+                    onClick={props.openAddPlace}
                     className="profile__add-button"
                     type="button"
                 />
             </section>
             <section className="elements">
-                {cards.map((card) => {
+                {props.cards.map((card) => {
                     return (
                         <Card
                             key={card._id}
                             card={card}
                             currentUser={currentUser}
-                            openDeleteCard={openDeleteCard}
-                            handleCardClick={handleCardClick}
-                            onCardLike={handleCardLike}
+                            openDeleteCard={props.openDeleteCard}
+                            handleCardClick={props.onCardClick}
+                            onCardLike={props.onCardLike}
+                            onCardDelete={props.onCardDelete}
                         />
                     )
                 })
