@@ -1,12 +1,12 @@
 import React from "react";
 
-function PopupWithForm({isOpen, name, title, buttonText, children, onClose}) {
+function PopupWithForm({isOpen, name, title, buttonText, children, onClose, onSubmit}) {
+
+    const buttonName = `${buttonText ? buttonText : 'Сохранить'}`;
+
     return (
-        <div
-            className={`popup popup_${name} ${isOpen ? "popup_opened" : ""}`}
-        >
-            <div className="popup__container"
-            >
+        <div className={`popup popup_${name} ${isOpen ? "popup_opened" : ""}`}>
+            <div className="popup__container">
                 <button
                     type="button"
                     className="popup__close-button"
@@ -20,19 +20,19 @@ function PopupWithForm({isOpen, name, title, buttonText, children, onClose}) {
                     method={"post"}
                     name={name}
                     noValidate
+                    onSubmit={onSubmit}
                 >
                     {children}
-                    <button type="submit"
-                            className={`popup__button popup__button__save popup_${name}`}
-                            value={buttonText}
-                    >{buttonText}
+                    <button
+                        type="submit"
+                        className={`popup__button popup__button__save popup_${name}`}
+                        value={buttonName}
+                    >
+                        {buttonName}
                     </button>
                 </form>
             </div>
-            <div
-                className="popup__overlay"
-                onClick={onClose}
-            >
+            <div className="popup__overlay" onClick={onClose}>
             </div>
         </div>
     )
