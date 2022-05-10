@@ -1,4 +1,4 @@
-import React from "react";
+import {createContext} from "react";
 
 export const userContext = {
         name: 'Имя',
@@ -6,4 +6,4 @@ export const userContext = {
         avatar: 'https://goo.su/5KqwD',
 }
 
-export const CurrentUserContext = React.createContext();
+export const CurrentUserContext = createContext();
