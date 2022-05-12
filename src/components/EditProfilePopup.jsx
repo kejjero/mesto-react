@@ -9,7 +9,7 @@ function EditProfilePopup(props) {
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser,props.isOpen]);
 
     const [name, setName] = useState(currentUser.name);
     const [description, setDescription] = useState(currentUser.about);
@@ -41,7 +41,7 @@ function EditProfilePopup(props) {
                 id="person"
                 name="person"
                 onChange={handleChangeName}
-                value={name}
+                value={name || ''}
                 placeholder="Имя"
                 required
                 minLength="2"
@@ -57,7 +57,7 @@ function EditProfilePopup(props) {
                 id="about-me"
                 name="aboutMe"
                 onChange={handleChangeDescription}
-                value={description}
+                value={description || ''}
                 placeholder="Деятельность"
                 required
                 minLength="2"
