@@ -1,6 +1,5 @@
 export const inputPerson = document.querySelector('.popup__input_person');
 export const inputAboutMe = document.querySelector('.popup__input_about-me');
-
 export const templateSelector = '#element-template';
 export const fromEditProfileSelector = '.popup__form_edit-profile';
 export const formAddPlaceSelector = '.popup__form_add-place';
@@ -14,3 +13,8 @@ export const listSelector = '.elements';
 export const profilePerson = '.profile__person';
 export const profileAboutMe = '.profile__about-me';
 export const profileAvatar = '.profile__avatar';
+export const userContext = {
+    name: 'Имя',
+    about: 'Деятельность',
+    avatar: 'https://goo.su/5KqwD',
+}
