@@ -8,7 +8,8 @@ import AddPlacePopup from "./AddPlacePopup";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
 import {useEffect, useState} from "react";
 import api from "../utils/api";
-import {CurrentUserContext, userContext} from '../contexts/CurrentUserContext';
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import {userContext} from '../utils/utils'
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -99,43 +100,39 @@ function App() {
                 setCards((cards) =>
                     // исключаем удаленную карточку из нового массива карточек
                     cards.filter((item) => (item._id !== card._id))
-                )
+
+                ), closeAllPopups()
             )
             .catch((err) => {
                 alert(err)
             })
-            .finally(() => closeAllPopups())
     }
 
     // запрос на апдейт профиля пользователя с новыми данными
     function handleUpdateUser({name, description}) {
         api.editProfile(name, description)
-            .then((res) => setCurrentUser(res))
+            .then((res) => setCurrentUser(res), closeAllPopups())
             .catch((err) => {
                 alert(err)
             })
-            .finally(() => closeAllPopups())
-        closeAllPopups()
     }
 
     // запрос на апдейт аватара пользователя с новой картинкой
     function handleUpdateAvatar({avatar}) {
         api.editAvatar(avatar)
-            .then((res) => setCurrentUser(res))
+            .then((res) => setCurrentUser(res), closeAllPopups())
             .catch((err) => {
                 alert(err)
             })
-            .finally(() => closeAllPopups())
     }
 
     // запрос на добавление новой карточки
     function handleAddPlaceSubmit({namePlace, linkPlace}) {
         api.sendCard(namePlace, linkPlace)
-            .then((newCard) => setCards([newCard, ...cards]))
+            .then((newCard) => setCards([newCard, ...cards]), closeAllPopups())
             .catch((err) => {
                 alert(err)
             })
-            .finally(() => closeAllPopups())
     }
 
     return (
